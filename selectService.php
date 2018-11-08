@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connect.php';
 $sql1="SELECT * FROM services";
 $rslt1=$connection->query($sql1);

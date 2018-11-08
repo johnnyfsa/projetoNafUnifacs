@@ -23,7 +23,7 @@ if (isset($_POST['email']) && isset($_POST['psswd']) && isset($_POST['fname']))
     echo "esse usuário já existe";
 
   }
-  if ($email===$confirm)
+  else if ($email===$confirm)
   {
     $sql ="INSERT INTO `user` (`fname`, `lname`,`email`,`profession`,`birthday`,`gender`,`psswd`) VALUES ('$fname','$lname','$email','$profession','$birthday','$gender', '$psswd')";
     if($connection->query($sql)===TRUE)

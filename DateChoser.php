@@ -1,4 +1,5 @@
 <?php
+session_start();
 //set timezone
 date_default_timezone_set('America/Bahia');
 //get prev and next months

@@ -3,7 +3,7 @@
  include('connect.php');
 
   session_start();
- if (!isset($_SESSION["email"])|| !isset($_SESSION["psswd"]))
+ if (!isset($_SESSION["id"]))
  {
    header("location:loginPage.html");
    exit;
@@ -12,8 +12,8 @@
  {
   echo "logged in successfully";
  }
-$email = $_SESSION['email'];
- $sql = "SELECT booking.book_date AS data, booking.book_hour AS hour , services.description AS service, booking.service_id, booking.book_id FROM booking INNER JOIN user ON booking.user_id = user.id INNER JOIN services ON booking.service_id=services.service_id  WHERE user.email ='$email' ";
+$id = $_SESSION['id'];
+ $sql = "SELECT booking.book_date AS data, booking.book_hour AS hour , services.description AS service, booking.service_id, booking.book_id FROM booking INNER JOIN user ON booking.user_id = user.id INNER JOIN services ON booking.service_id=services.service_id  WHERE user.id ='$id' ";
  $rslt =  $connection->query($sql);
    ?>
 <!DOCTYPE html>

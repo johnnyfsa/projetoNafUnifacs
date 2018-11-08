@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('connect.php');
 $day = $_POST['date'];
 $ym = $_POST['ym'];

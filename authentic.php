@@ -21,12 +21,12 @@
      $psswd=$_POST['psswd'];
     $sql = "SELECT * FROM user WHERE email = '$email' and psswd = '$psswd'";
     $rslt= $connection->query($sql);
+    $fetch = $rslt->fetch_assoc();
     $row = mysqli_num_rows($rslt);
     if ($row >0)
     {
       session_start();
-      $_SESSION['email']=$_POST['email'];
-      $_SESSION['psswd']=$_POST['psswd'];
+      $_SESSION['id']=$fetch["id"];
       echo "loging realizado";
       echo "<script>loginsuccess()</script>";
     }

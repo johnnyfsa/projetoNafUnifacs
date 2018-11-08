@@ -6,9 +6,9 @@ $data=$_POST['data'];
 $time=$_POST['tempo'];
 
 session_start();
-$email=$_SESSION['email'];
+$id=$_SESSION['id'];
 
-$sql2 = "SELECT id FROM user WHERE email='$email'";
+$sql2 = "SELECT id FROM user WHERE id ='$id' ";
 $rslt2 = $connection->query($sql2);
 $row = $rslt2->fetch_assoc();
 $userID = $row["id"];
