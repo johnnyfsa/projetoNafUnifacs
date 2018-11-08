@@ -13,7 +13,7 @@
   echo "logged in successfully";
  }
 $email = $_SESSION['email'];
- $sql = "SELECT booking.book_date AS data, booking.book_hour AS hour , services.description AS service, booking.service_id FROM booking INNER JOIN user ON booking.user_id = user.id INNER JOIN services ON booking.service_id=services.service_id  WHERE user.email ='$email' ";
+ $sql = "SELECT booking.book_date AS data, booking.book_hour AS hour , services.description AS service, booking.service_id, booking.book_id FROM booking INNER JOIN user ON booking.user_id = user.id INNER JOIN services ON booking.service_id=services.service_id  WHERE user.email ='$email' ";
  $rslt =  $connection->query($sql);
    ?>
 <!DOCTYPE html>
@@ -23,14 +23,7 @@ $email = $_SESSION['email'];
     <title>Painel</title>
     <style>
 
-      .tableRow
-      {
-        cursor: pointer;
-      }
-      .tableRow:hover
-      {
-      background-color: blue;
-      }
+
       .divTable
       {
         border: 1px solid #1C6EA4;
@@ -87,17 +80,19 @@ $email = $_SESSION['email'];
       </div>
       <div class="divTableCell">
         <table class="table1" id = "table">
+          <form  action="deleteRow.php" method="post" id="deleteRow">
           <tr>
             <th>Date</th>
             <th>book_hour</th>
             <th>Service</th>
             <?php
+            $lenght=0;
             if (mysqli_num_rows($rslt) > 0)
             {
               while($row = $rslt->fetch_assoc())
               {
-                echo "<tr class=\"tableRow\"><td class=\"tableData\">" .$row["data"]."</td><td class=\"tableData\">" .$row["hour"]. "</td><td class=\"tableData\">" .$row["service"]."</td></tr>";
-                //echo $row["data"];
+                echo "<tr class=\"tableRow\"><td class=\"tableData\">" .$row["data"]."</td><td class=\"tableData\">" .$row["hour"]. "</td><td class=\"tableData\">" .$row["service"]."</td><td class=\"tableData\">"."<input type =\"checkbox\" name=\"id$lenght\" value=\"".$row["book_id"]."\">"."</td></tr>";
+                $lenght++;
               }
               echo "</table>";
             }
@@ -108,63 +103,15 @@ $email = $_SESSION['email'];
             $connection->close();
              ?>
           </tr>
+          <input type="hidden" name="lenght" value="<?php echo $lenght ?>">
+          </form>
         </table>
-        <button onclick="eraseRow()" > Delete Selected Row</button>
+
+        <button type="submit" form="deleteRow" > Delete Selected Row</button>
       </div>
     </div>
   </div>
 </div>
-<script>
-  var table = document.getElementById("table");
-  var rIndex;
-  var day, hour, serv;
 
-  for (var i = 1; i < table.rows.length; i++)
-  {
-    table.rows[i].onclick= function()
-    {
-
-      if (this.style.background=="blue")
-      {
-        this.style.background="inherit";
-        rIndex=null;
-        console.log(rIndex);
-      }
-      else
-      {
-        rIndex= this.rowIndex;
-        day=this.cells[0].innerHTML;
-        hour=this.cells[1].innerHTML;
-        serv=this.cells[2].innerHTML;
-        console.log(rIndex,day, hour, serv);
-        this.style.background="blue";
-      }
-    }
-  }
-  function eraseRow()
-  {
-    if(rIndex!=null)
-    {
-      table.deleteRow(rIndex);
-      rIndex = null;
-        if (window.XMLHttpRequest)
-        {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        }
-        else
-        {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-      xmlhttp.open("POST","deleteBook.php?day="+day,true);
-      xmlhttp.open("POST","deleteBook.php?hour="+hour,true);
-      xmlhttp.open("POST","deleteBook.php?serv="+serv,true);
-      xmlhttp.send();
-    }
-
-  }
-
-</script>
   </body>
 </html>
