@@ -20,6 +20,10 @@ $id = $_SESSION['id'];
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set the page to the width of the device and set the zoon level -->
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="css\bootstrap.min.css">
     <title>Painel</title>
     <style>
 
@@ -79,12 +83,12 @@ $id = $_SESSION['id'];
         <a href="logout.php"> Leave </a><br>
       </div>
       <div class="divTableCell">
-        <table class="table1" id = "table">
+        <table class="table table-bordered table-striped table-hover" id = "table">
           <form  action="deleteRow.php" method="post" id="deleteRow">
           <tr>
-            <th>Date</th>
-            <th>book_hour</th>
-            <th>Service</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">book_hour</th>
+            <th class="text-center">Service</th>
             <?php
             $lenght=0;
             if (mysqli_num_rows($rslt) > 0)
