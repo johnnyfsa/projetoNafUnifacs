@@ -75,7 +75,7 @@ $id = $_SESSION['id'];
     <div class="divTableRow">
       <div class="divTableCell">
         <a href="editProfile.php">Edit Profile</a><br>
-        <a href="#">Alter Password</a><br>
+        <a href="alterPassword.html">Alter Password</a><br>
         <a href="logout.php"> Leave </a><br>
       </div>
       <div class="divTableCell">
