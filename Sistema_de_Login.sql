@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 29/10/2018 às 18:25
--- Versão do servidor: 10.1.34-MariaDB
--- Versão do PHP: 7.2.8
+-- Host: 127.0.0.1
+-- Generation Time: 09-Nov-2018 às 02:45
+-- Versão do servidor: 10.1.36-MariaDB
+-- versão do PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `Sistema de Login`
+-- Database: `sistema de login`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `booking`
+-- Estrutura da tabela `booking`
 --
 
 CREATE TABLE `booking` (
@@ -37,19 +37,20 @@ CREATE TABLE `booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Fazendo dump de dados para tabela `booking`
+-- Extraindo dados da tabela `booking`
 --
 
 INSERT INTO `booking` (`book_date`, `service_id`, `user_id`, `book_id`, `book_hour`) VALUES
 ('2018-10-10', 1, 4, 1, '18:00:00'),
 ('2018-09-05', 2, 9, 2, '12:00:00'),
-('2018-10-25', 1, 4, 9, '10:00:00'),
-('2018-10-04', 2, 4, 11, '08:00:00');
+('2018-10-04', 2, 4, 11, '08:00:00'),
+('2018-11-16', 1, 10, 12, '08:00:00'),
+('2018-11-21', 2, 10, 13, '18:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `services`
+-- Estrutura da tabela `services`
 --
 
 CREATE TABLE `services` (
@@ -58,7 +59,7 @@ CREATE TABLE `services` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Fazendo dump de dados para tabela `services`
+-- Extraindo dados da tabela `services`
 --
 
 INSERT INTO `services` (`description`, `service_id`) VALUES
@@ -68,7 +69,7 @@ INSERT INTO `services` (`description`, `service_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `times`
+-- Estrutura da tabela `times`
 --
 
 CREATE TABLE `times` (
@@ -77,7 +78,7 @@ CREATE TABLE `times` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Fazendo dump de dados para tabela `times`
+-- Extraindo dados da tabela `times`
 --
 
 INSERT INTO `times` (`hora_id`, `time`) VALUES
@@ -88,7 +89,7 @@ INSERT INTO `times` (`hora_id`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `user`
+-- Estrutura da tabela `user`
 --
 
 CREATE TABLE `user` (
@@ -103,22 +104,22 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Fazendo dump de dados para tabela `user`
+-- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`fname`, `lname`, `psswd`, `id`, `email`, `gender`, `profession`, `birthday`) VALUES
 ('joao', 'gabriel', 'qwe', 4, 'joao@unifacs.br', 'male', 'alguma coisa', '1970-01-01'),
 ('maria', 'mortadela', 'qwe', 5, 'maria@hotla', 'female', 'algumacoisa', '1970-01-01'),
 ('un', 'dos', 'qwe', 7, '3@4', 'male', 'tres', '0010-10-10'),
-('un', 'dos', 'qwe', 8, '3@4', 'male', 'tres', '0010-10-10'),
-('asd', 'asd', 'qwe', 9, 'asd@asd', 'male', 'qwe', '0012-12-12');
+('asd', 'asd', 'qwe', 9, 'asd@asd', 'male', 'qwe', '0012-12-12'),
+('Joao Gabriel L', 'NA', 'qwe', 10, 'joaofeirense@gmail.com', 'male', '', '2018-11-15');
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `booking`
+-- Indexes for table `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`book_id`),
@@ -126,57 +127,58 @@ ALTER TABLE `booking`
   ADD KEY `chave_servico` (`service_id`);
 
 --
--- Índices de tabela `services`
+-- Indexes for table `services`
 --
 ALTER TABLE `services`
   ADD PRIMARY KEY (`service_id`);
 
 --
--- Índices de tabela `times`
+-- Indexes for table `times`
 --
 ALTER TABLE `times`
   ADD PRIMARY KEY (`hora_id`);
 
 --
--- Índices de tabela `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `booking`
+-- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT de tabela `services`
+-- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
   MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `times`
+-- AUTO_INCREMENT for table `times`
 --
 ALTER TABLE `times`
   MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Restrições para dumps de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para tabelas `booking`
+-- Limitadores para a tabela `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `chave_servico` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
