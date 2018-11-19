@@ -2,5 +2,5 @@
 
 session_start();
 session_destroy();
-header("Location:loginPage.html");
+header("Location:login.html");
  ?>
