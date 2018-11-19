@@ -1,3 +1,17 @@
+<?php
+include('connect.php');
+
+ session_start();
+if (!isset($_SESSION["id"]))
+{
+  header("location:loginPage.html");
+  exit;
+}
+
+$id = $_SESSION['id'];
+$sql = "SELECT booking.book_date AS data, booking.book_hour AS hour , services.description AS service, booking.service_id, booking.book_id FROM booking INNER JOIN user ON booking.user_id = user.id INNER JOIN services ON booking.service_id=services.service_id  WHERE user.id ='$id' ";
+$rslt =  $connection->query($sql);
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +48,7 @@
 
   <body id="page-top">
     <nav class="navbar navbar-expand static-top navbar-dark">
-        <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+         <a href="index.php" class="navbar-brand mr-1"> <img src="img/naf_logo.png" class="navbar-brand mr-1" style="width:70%;"></img> </a>
 
         <div class="col-sm-9 col-md-8 col-lg-9">
         </div>

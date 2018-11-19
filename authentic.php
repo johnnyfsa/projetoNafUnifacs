@@ -6,7 +6,7 @@
      <script type="text/javascript">
        function loginsuccess()
        {
-        setTimeout("window.location='painel.php'",2000);
+        setTimeout("window.location='index.php'",2000);
        }
        function loginfail()
        {
