@@ -85,6 +85,9 @@ $rslt =  $connection->query($sql);
               <a href="#">Serviços Marcados</a>
             </li>
           </ol>
+          <div class="col-sm-9 col-md-8 col-lg-12">
+            <a href="selectService.php" class="btn btn-block" style="background-color:darkblue; color:white;"> Agendar Novo Serviço </a>
+          </div>
 
           <!-- DataTables Example -->
           <div class="card mb-3">
