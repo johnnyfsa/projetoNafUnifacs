@@ -15,7 +15,7 @@ $rslt1=$connection->query($sql1);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>NAF- Esqueceu sua Senha?</title>
+    <title>Escolha seu serviço.</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +45,13 @@ $rslt1=$connection->query($sql1);
   </head>
 
   <body>
-
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.php">Página Inicial</a>
+        <a href="#"> > Selecionar Serviço</a>
+      </li>
+    </ol>
     <div class="container">
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Selecionar Serviço</div>
@@ -54,18 +60,18 @@ $rslt1=$connection->query($sql1);
             <h4>Selecionar Serviço</h4>
             <p>Selecione o Serviço Desejado, ou insira o nome do serviço</p>
           </div>
-          <form action="DateChoser.php" method="post" id="serviceForm">
+          <form action="datePicker.php" method="post" id="serviceForm">
             <div class="form-group">
               <div class="form-label-group">
-                <input class="form-control" id="selectService" type="text" name="selectedService" list="services" required="required" autofocus="autofocus"/>
+                <input class="form-control" id="selectService" type="text" name="selectedService" list="services" autocomplete="off" required="required" autofocus="autofocus"/>
                 <datalist class="serviceList" id="services">
                   <?php
                     if (mysqli_num_rows($rslt1)>0)
                     {
                       while ($row=$rslt1->fetch_assoc())
                       {
-                        echo "<option id=\"opt".$row["service_id"]. "value=\"".$row["service_id"]."\">".$row["description"]."</option>";
-                        
+                        echo "<option id=\"opt".$row["service_id"]. "\"value=\"".$row["service_id"]."\">".$row["description"]."</option>";
+
                       }
                     }
                    ?>

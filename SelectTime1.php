@@ -1,6 +1,15 @@
 <?php
 session_start();
-$service = $_POST['selectedService'];
+include('connect.php');
+$finalDate = $_POST['date'];
+$service = $_POST['service'];
+
+
+$sql ="SELECT times.time FROM times JOIN booking WHERE booking.book_date='$finalDate' AND booking.service_id='$service' AND times.time!=booking.book_hour";
+$sql2 ="SELECT * FROM times";
+$rslt=$connection->query($sql);
+$rslt2=$connection->query($sql2);
+
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -22,21 +31,16 @@ $service = $_POST['selectedService'];
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
-    <!--Datepicker -->
-    <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
 
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
 
-
-    <title>Selecione a Data do Serviço</title>
+    <title>Selecione o horário disponível para o Agendamento</title>
   </head>
   <body>
     <style media="screen">
@@ -64,7 +68,8 @@ $service = $_POST['selectedService'];
       <li class="breadcrumb-item">
         <a href="index.php">Página Inicial</a>
         <a href="selectService1.php"> > Selecionar Serviço</a>
-          <a href="#"> > Selecionar Data</a>
+          <a href="datePicker.php"> > Selecionar Data</a>
+          <a href="#"> > Selecionar Horário</a>
       </li>
     </ol>
     <div class="container">
@@ -75,33 +80,40 @@ $service = $_POST['selectedService'];
             <h4>Agendar Data</h4>
             <p>Selecione a data para de agendamento.</p>
           </div>
-          <form action="SelectTime1.php" method="post" id="serviceForm">
+          <form action="process.php" method="post" id="timeSelect">
             <div class="form-group">
               <div class="form-label-group">
-                <input type="text" name="date" value="" class="form-control" id="datepick" autocomplete="off" autofocus="autofocus">
-                  <input type="hidden" name="service" value= "<?php  echo $service; ?>">
+                  <input type="hidden" name="data" value="<?php echo $finalDate; ?>">
+                  <input type="hidden" name="service" value="<?php echo $service; ?>">
+                  <select name="tempo" form="timeSelect" class="form-control">
+                    <?php
+                    if (mysqli_num_rows($rslt)>0)
+                    {
+                      while ($row = $rslt->fetch_assoc())
+                      {
+                        echo "<option value=\"".$row["time"]."\">".$row["time"]."</option>";
+                      }
+                    }
+                    else
+                    {
+                      while ($row = $rslt2->fetch_assoc())
+                      {
+                        echo "<option value=\"".$row["time"]."\">".$row["time"]."</option>";
+                      }
+                    }
+                     ?>
+                  </select>
               </div>
             </div>
-            <button style="color:white;" class="btn btn-primary btn-block" type="submit" form="serviceForm">Prosseguir</button>
+            <button style="color:white;" class="btn btn-primary btn-block" type="submit" form="timeSelect">Prosseguir</button>
           </form>
           <div class="text-center"><br>
-            <a style="color:white; background-color:darkblue;" class="btn btn-primary btn-block" href="selectService1.php">Voltar</a>
+            <a style="color:white; background-color:darkblue;" class="btn btn-primary btn-block" href="datePicker.php">Voltar</a>
           </div>
         </div>
       </div>
     </div>
 
-
-
-    <script type="text/javascript">
-    $('#datepick').datepicker({
-      startDate: "today",
-      format: "yyyy-mm-dd",
-      autoclose: true,
-      daysOfWeekDisabled: "0,6",
-      daysOfWeekHighlighted: "1,2,3,4,5"
-      });
-    </script>
 
 
   </body>
