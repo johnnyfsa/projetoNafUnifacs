@@ -2,8 +2,12 @@
 include('connect.php');
 
 
+echo $_POST['fname'] ."\n";
+echo $_POST['lname'] ."\n";
+echo $_POST['email'] ."\n";
+echo $_POST['inputPassword'] ."\n";
 
-if (isset($_POST['email']) && isset($_POST['psswd']) && isset($_POST['fname']))
+if (isset($_POST['email']) && isset($_POST['inputPassword']) && isset($_POST['fname']))
 {
   $fname = $_POST['fname'];
   $lname = $_POST['lname'];
@@ -12,7 +16,7 @@ if (isset($_POST['email']) && isset($_POST['psswd']) && isset($_POST['fname']))
   $profession = $_POST['profession'];
   $birthday = $_POST['birthday'];
   $gender = $_POST['gender'];
-  $psswd = $_POST['psswd'];
+  $psswd = $_POST['inputPassword'];
 
 
   $query = "SELECT* FROM user WHERE email = '$email'";
@@ -29,7 +33,7 @@ if (isset($_POST['email']) && isset($_POST['psswd']) && isset($_POST['fname']))
     if($connection->query($sql)===TRUE)
     {
       echo "Nova entrada criada com sucesso";
-      header("location:loginPage.html");
+      header("location:login.html");
     }
     else
     {
