@@ -16,7 +16,11 @@ if (isset($_POST['current']) && isset($_POST['new']))
       $query = "UPDATE `user` SET `psswd`='$new' WHERE id = '$id'";
       if ($connection->query($query)===true)
       {
-        echo "Alteração de Senha feita com Sucesso!";
+        header("location:index.php");
+      }
+      else
+      {
+        echo "erro: não foi possível atualizar senha";
       }
     }
   }

@@ -22,7 +22,7 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) &
   if ($connection->query($query)===true)
   {
     echo "entrada atualizada com sucesso";
-    header("location:painel.php");
+    header("location:index.php");
   }
   else
   {

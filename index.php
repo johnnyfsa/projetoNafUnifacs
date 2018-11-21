@@ -61,8 +61,8 @@ $rslt =  $connection->query($sql);
               <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="#">Alterar Dados Cadastrais</a>
-              <a class="dropdown-item" href="#">Alterar Senha</a>
+              <a class="dropdown-item" href="editProfile1.php">Alterar Dados Cadastrais</a>
+              <a class="dropdown-item" href="alterPassword1.php">Alterar Senha</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
             </div>
@@ -85,6 +85,7 @@ $rslt =  $connection->query($sql);
               <a href="#">Serviços Marcados</a>
             </li>
           </ol>
+          <!--Botão de Novo Serviço -->
           <div class="col-sm-9 col-md-8 col-lg-12">
             <a href="selectService1.php" class="btn btn-block" style="background-color:darkblue; color:white;"> Agendar Novo Serviço </a>
           </div>
