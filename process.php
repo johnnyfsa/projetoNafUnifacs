@@ -14,7 +14,7 @@ $sql="INSERT INTO `booking` (`book_date`, `service_id`, `user_id`,`book_id`,`boo
 if($connection->query($sql)===TRUE)
 {
   echo "Nova entrada criada com sucesso";
-  header("location:painel.php");
+  header("location:index.php");
 }
 else
 {
