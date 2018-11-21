@@ -104,6 +104,7 @@ $id = $_SESSION['id'];
             {
               echo "0 results";
             }
+
             $connection->close();
              ?>
           </tr>

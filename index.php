@@ -93,24 +93,27 @@ $rslt =  $connection->query($sql);
           <div class="card mb-3">
             <div class="card-body">
               <div class="table-responsive">
+                <form  action="deleteRow.php" method="post" id="deleteRow">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
                   <thead>
-                    <form  action="deleteRow.php" method="post" id="deleteRow">
                     <tr>
                     <th class="text-center">Data</th>
                     <th class="text-center">Horário</th>
                     <th class="text-center">Serviço</th>
                     <th clas="text-center"> Seleciona </th>
+                  </thead>
+                  <tbody>
                     <?php
                     $lenght=0;
                     if (mysqli_num_rows($rslt) > 0)
                     {
                       while($row = $rslt->fetch_assoc())
                       {
-                        echo "<tr class=\"tableRow\"><td class=\"tableData\">" .$row["data"]."</td><td class=\"tableData\">" .$row["hour"]. "</td><td class=\"tableData\">" .$row["service"]."</td><td class=\"tableData\">"."<input type =\"checkbox\" name=\"id$lenght\" value=\"".$row["book_id"]."\">"."</td></tr>";
+                      echo "<tr ><td >" .$row["data"]."</td><td >" .$row["hour"]. "</td><td >" .$row["service"]."</td><td >"."<input type =\"checkbox\" name=\"id$lenght\" value=\"".$row["book_id"]."\">"."</td></tr>";
                         $lenght++;
                       }
-                      echo "</table>";
+                      echo "</form></tbody></table>";
                     }
                     else
                     {
@@ -119,7 +122,7 @@ $rslt =  $connection->query($sql);
                     $connection->close();
                      ?>
                   </tr>
-                  <input type="hidden" name="lenght" value="<?php echo $lenght ?>">
+                  <input form="deleteRow" type="hidden" name="lenght" value="<?php echo $lenght; ?>">
                   </form>
                   </tbody>
                 </table>

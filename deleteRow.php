@@ -2,6 +2,8 @@
 include('connect.php');
 $lenght = $_POST['lenght'];
 $bookIDs = array();
+
+
 //preenche o array de linhas que serão deletadas
 for ($i=0; $i <$lenght ; $i++)
 {
@@ -18,7 +20,7 @@ for ($i=0; $i <$lenght ; $i++)
     $query = "DELETE FROM `booking` WHERE book_id = $bookIDs[$i]";
     if ($connection->query($query)===true)
     {
-      header("location:painel.php");
+      header("location:index.php");
     }
   }
 
