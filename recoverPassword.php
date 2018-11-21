@@ -17,7 +17,7 @@ if (isset($_POST['email']))
 
     if (mail($to,$subject,$message,$from))
     {
-      echo "mesagem enviada com exito";
+        header("location:login.html");
     }
     else
     {

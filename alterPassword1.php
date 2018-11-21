@@ -39,15 +39,14 @@
   </head>
 
   <body>
-
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.php">Serviços Marcados</a>
+        <a href="#"> > Alterar Senha</a>
+      </li>
+    </ol>
     <div class="container">
-      <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.php">Serviços Marcados</a>
-          <a href="#"> > Alterar Senha</a>
-        </li>
-      </ol>
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Alterar Senha</div>
         <div class="card-body">
