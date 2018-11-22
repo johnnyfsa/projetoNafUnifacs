@@ -18,7 +18,7 @@
      <?php
      include('connect.php');
      $email=$_POST['inputEmail'];
-     $psswd=$_POST['inputPassword'];
+     $psswd = preg_replace('/[^[:alpha:]_]/', '',$_POST['inputPassword']);
     $sql = "SELECT * FROM user WHERE email = '$email' and psswd = '$psswd'";
     $rslt= $connection->query($sql);
     $fetch = $rslt->fetch_assoc();

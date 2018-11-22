@@ -9,14 +9,14 @@ echo $_POST['inputPassword'] ."\n";
 
 if (isset($_POST['email']) && isset($_POST['inputPassword']) && isset($_POST['fname']))
 {
-  $fname = $_POST['fname'];
-  $lname = $_POST['lname'];
+  $fname =  preg_replace('/[^[:alpha:]_]/', '',$_POST['fname']);
+  $lname = preg_replace('/[^[:alpha:]_]/', '',$_POST['lname']);
   $email = $_POST['email'];
   $confirm = $_POST['confirm'];
-  $profession = $_POST['profession'];
-  $birthday = $_POST['birthday'];
+  $profession = preg_replace('/[^[:alpha:]_]/', '',$_POST['profession']);
+  $birthday = preg_replace('/[^[:alpha:]_]/', '',$_POST['birthday']);
   $gender = $_POST['gender'];
-  $psswd = $_POST['inputPassword'];
+  $psswd = preg_replace('/[^[:alpha:]_]/', '',$_POST['inputPassword']);
 
 
   $query = "SELECT* FROM user WHERE email = '$email'";
