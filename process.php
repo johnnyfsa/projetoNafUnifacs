@@ -8,8 +8,6 @@ $time=$_POST['tempo'];
 session_start();
 $id=$_SESSION['id'];
 
-echo "$service";
-
 $sql="INSERT INTO `booking` (`book_date`, `service_id`, `user_id`,`book_id`,`book_hour`) VALUES ('$data', '$service','$id',NULL,'$time')";
 if($connection->query($sql)===TRUE)
 {

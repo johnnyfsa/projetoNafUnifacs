@@ -11,6 +11,7 @@ if (!isset($_SESSION["id"]))
 $id = $_SESSION['id'];
 $sql = "SELECT booking.book_date AS data, booking.book_hour AS hour , services.description AS service, booking.service_id, booking.book_id FROM booking INNER JOIN user ON booking.user_id = user.id INNER JOIN services ON booking.service_id=services.service_id  WHERE user.id ='$id' ";
 $rslt =  $connection->query($sql);
+$query = "SELECT * FROM `user` WHERE `id`='$id'";
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,13 +51,21 @@ $rslt =  $connection->query($sql);
     <nav class="navbar navbar-expand static-top navbar-dark">
          <a href="index.php" class="navbar-brand mr-1"> <img src="img/naf_logo.png" class="navbar-brand mr-1" style="width:70%;"></img> </a>
 
-        <div class="col-sm-9 col-md-8 col-lg-9">
+        <div class="col-sm-9 col-md-8 col-lg-9 text-right" style="color:white;">
+          <?php
+          if(mysqli_num_rows($connection->query($query))>0)
+          {
+            $rslt2 = $connection->query($query);
+            $fetch = $rslt2->fetch_assoc();
+            echo "Bem vindo de volta, ".$fetch["fname"];
+          }
+           ?>
         </div>
 
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
           <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
               Configurações da Conta
               <i class="fas fa-user-circle fa-fw"></i>
             </a>
